@@ -214,15 +214,19 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       child: Container(
         padding: EdgeInsets.all(8.0),
         height: widget.pickerTheme!.pickerHeight,
-        decoration: BoxDecoration(color: widget.pickerTheme!.backgroundColor),
+        decoration: BoxDecoration(
+          color: widget.pickerTheme!.backgroundColor,
+        ),
         child: CupertinoPicker.builder(
           backgroundColor: widget.pickerTheme!.backgroundColor,
           scrollController: scrollCtrl,
           itemExtent: widget.pickerTheme!.itemHeight,
           onSelectedItemChanged: valueChanged,
           childCount: valueRange.last - valueRange.first + 1,
-          itemBuilder: (context, index) =>
-              _renderDatePickerItemComponent(valueRange.first + index, format),
+          itemBuilder: (context, index) => _renderDatePickerItemComponent(
+            valueRange.first + index,
+            format,
+          ),
         ),
       ),
     );
@@ -234,8 +238,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       alignment: Alignment.center,
       child: Text(
         DateTimeFormatter.formatDateTime(value, format, widget.locale),
-        style: widget.pickerTheme!.itemTextStyle ??
-            DATETIME_PICKER_ITEM_TEXT_STYLE,
+        style: widget.pickerTheme!.itemTextStyle,
       ),
     );
   }
